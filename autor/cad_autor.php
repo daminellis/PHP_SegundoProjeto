@@ -6,7 +6,7 @@ $db       = mysql_select_db('livraria');
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html">
-    <title>Pesquisa Usuários </title>
+    <title>Pesquisa Autores </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
@@ -27,8 +27,11 @@ $db       = mysql_select_db('livraria');
 
             document.getElementById('codigo').value = retorno[0];
             document.getElementById('nome').value = retorno[1];
-            document.getElementById('login').value = retorno[2];
-            document.getElementById('senha').value = retorno[3];
+            document.getElementById('endereco').value = retorno[2];
+            document.getElementById('cidade').value = retorno[3];
+            document.getElementById('estado').value = retorno[4];
+            document.getElementById('pais').value = retorno[5];
+            document.getElementById('nacionalidade').value = retorno[6];
         }
     </script>
     <!--Modal Cadastrar-->
@@ -39,11 +42,14 @@ $db       = mysql_select_db('livraria');
                     <h1>Adicionar um registro ...</h1>
                 </div>
                 <div class="modal-body">
-                    <form class="form-group well" action="adduser.php" method="GET">
+                    <form class="form-group well" action="addautor.php" method="GET">
                         <input type="text" id="codigo" name="codigo" class="span3" value="" required placeholder="Codigo" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <input type="text" id="nome" name="nome" class="span3" value="" required placeholder="Nome" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" id="login" name="login" class="span3" value="" required placeholder="Login" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" id="senha" name="senha" class="span3" value="" required placeholder="Senha" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="endereco" name="endereco" class="span3" value="" required placeholder="Endereco" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="cidade" name="cidade" class="span3" value="" required placeholder="Cidade" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="estado" name="estado" class="span3" value="" required placeholder="Estado" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="pais" name="pais" class="span3" value="" required placeholder="Pais" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="nacionalidade" name="nacionalidade" class="span3" value="" required placeholder="Nacionalidade" style=" margin-bottom: -2px; height: 25px;"><br><br>                        
                         <button type="submit" class="btn btn-success btn-large" id="cadastrar" name="cadastrar" value="cadastrar" style="height: 35px">Cadastrar</button>
                     </form>
                 </div>
@@ -64,11 +70,14 @@ $db       = mysql_select_db('livraria');
                     <h1>Alterar de Registro...</h1>
                 </div>
                 <div class="modal-body">
-                    <form class="form-group well" action="altuser.php" method="GET">
-                        Codigo<input id="codigo" type="text" name="codigo" value="" required>
-                        Nome  <input id="nome" type="text" name="nome" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Login <input id="login" type="text" name="login" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;">
-                        Senha <input id="senha" type="text" name="senha" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                    <form class="form-group well" action="altautor.php" method="GET">
+                    <input type="text" id="codigo" name="codigo" class="span3" value="" required placeholder="Codigo" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="nome" name="nome" class="span3" value="" required placeholder="Nome" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="endereco" name="endereco" class="span3" value="" required placeholder="Endereco" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="cidade" name="cidade" class="span3" value="" required placeholder="Cidade" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="estado" name="estado" class="span3" value="" required placeholder="Estado" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="pais" name="pais" class="span3" value="" required placeholder="Pais" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="nacionalidade" name="nacionalidade" class="span3" value="" required placeholder="Nacionalidade" style=" margin-bottom: -2px; height: 25px;"><br><br>   
                         <button type="submit" class="btn btn-success btn-large" name="alterar" id="alterar" value="alterar" style="height: 35px">Alterar</button>
                     </form>
                 </div>
@@ -88,11 +97,14 @@ $db       = mysql_select_db('livraria');
                     <h1>Excluir um Registro...</h1>
                 </div>
                 <div class="modal-body">
-                    <form class="form-group well" action="excuser.php" method="GET">
-                        Codigo <input id="codigo" type="text" name="codigo" value="" required>
-                        Nome   <input id="nome" type="text" name="nome" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Login  <input id="login" type="text" name="login" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;">
-                        Senha  <input id="senha" type="text" name="senha" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                    <form class="form-group well" action="excautor.php" method="GET">
+                    <input type="text" id="codigo" name="codigo" class="span3" value="" required placeholder="Codigo" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="nome" name="nome" class="span3" value="" required placeholder="Nome" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="endereco" name="endereco" class="span3" value="" required placeholder="Endereco" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="cidade" name="cidade" class="span3" value="" required placeholder="Cidade" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="estado" name="estado" class="span3" value="" required placeholder="Estado" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="pais" name="pais" class="span3" value="" required placeholder="Pais" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" id="nacionalidade" name="nacionalidade" class="span3" value="" required placeholder="Nacionalidade" style=" margin-bottom: -2px; height: 25px;"><br><br>   
                         <button type="submit" class="btn btn-success btn-large" name="excluir" id="excluir" value="excluir" style="height: 35px">Excluir</button>
                     </form>
                 </div>
@@ -107,7 +119,7 @@ $db       = mysql_select_db('livraria');
         <div class="row">
 
             <h2>Lista de Usuários: </h2><br>
-            <form action="cad_usuarios.php" method="POST">
+            <form action="cad_autor.php" method="POST">
                 <input type="text" name="nome" id="nome" placeholder="Nome ..." class="span4" style="margin-bottom: -2px; height: 25px;">
                 <button type="submit" name="pesquisar" id="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
@@ -117,14 +129,16 @@ $db       = mysql_select_db('livraria');
                 <tr>
                     <td><b>Codigo</b></td>
                     <td><b>Nome</b></td>
-                    <td><b>Login</b></td>
-                    <td><b>Senha</b></td>
-                    <td><b>Operacao</b></td>
+                    <td><b>Endereco</b></td>
+                    <td><b>Cidade</b></td>
+                    <td><b>Estado</b></td>
+                    <td><b>Pais</b></td>
+                    <td><b>Nacionalidade</b></td>
                 </tr>
                 <?php
                 if ((isset($_POST['pesquisar'])) or isset($_POST['gravar']))
                 {
-              	    $consulta = "select * from usuario";
+              	    $consulta = "select * from autor";
 
                    	if ($_POST['nome'] != '')
                    	{
@@ -136,13 +150,16 @@ $db       = mysql_select_db('livraria');
 
 					while ($dados = mysql_fetch_array($resultado))
                     {
-						$strdados = $dados['codigo']."*".$dados['nome']."*".$dados['login']."*".$dados['senha'];
+						$strdados = $dados['codigo']."*".$dados['nome']."*".$dados['endereco']."*".$dados['cidade']."*".$dados['estado']."*".$dados['pais']."*".$dados['nacionalidade'];
 				    ?>
                     <tr>
                         <td><?php echo $dados['codigo']; ?></td>
                         <td><?php echo $dados['nome']; ?></td>
-                        <td><?php echo $dados['login']; ?></td>
-                        <td><?php echo $dados['senha']; ?></td>
+                        <td><?php echo $dados['endereco']; ?></td>
+                        <td><?php echo $dados['cidade']; ?></td>
+                        <td><?php echo $dados['estado']; ?></td>
+                        <td><?php echo $dados['pais']; ?></td>
+                        <td><?php echo $dados['nacionalidade']; ?></td>                        
                         <td>
 			        	<?php
 								echo "<a href='excuser.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' id='excluir' name='excluir'>Excluir</button></a>";
