@@ -6,7 +6,7 @@ $db       = mysql_select_db('livraria');
 
 <head>
     <meta http-equiv="Content-Type" content="text/html">
-    <title>Pesquisa Usuários </title>
+    <title>Pesquisa UsuÃ¡rios </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
@@ -106,7 +106,7 @@ $db       = mysql_select_db('livraria');
     <div class="container">
         <div class="row">
 
-            <h2>Lista de Usuários: </h2><br>
+            <h2>Lista de Usuï¿½rios: </h2><br>
             <form action="cad_usuarios.php" method="POST">
                 <input type="text" name="nome" id="nome" placeholder="Nome ..." class="span4" style="margin-bottom: -2px; height: 25px;">
                 <button type="submit" name="pesquisar" id="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
