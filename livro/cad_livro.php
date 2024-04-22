@@ -6,7 +6,7 @@ $db       = mysql_select_db('livraria');
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html">
-    <title>Pesquisa Clasificações </title>
+    <title>Pesquisa Livros </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
@@ -26,7 +26,17 @@ $db       = mysql_select_db('livraria');
             var retorno = valor.split("*");
 
             document.getElementById('codigo').value = retorno[0];
-            document.getElementById('nome').value = retorno[1];
+            document.getElementById('titulo').value = retorno[1];
+            document.getElementById('codcategoria').value = retorno[2];
+            document.getElementById('codclassificacao').value = retorno[3];
+            document.getElementById('ano').value = retorno[4];
+            document.getElementById('edicao').value = retorno[5];
+            document.getElementById('codautor').value = retorno[6];
+            document.getElementById('editora').value = retorno[7];
+            document.getElementById('paginas').value = retorno[8];
+            document.getElementById('fotocapa').value = retorno[9];
+            document.getElementById('valor').value = retorno[10];
+            document.getElementById('nome').value = retorno[11];
         }
     </script>
     <!--Modal Cadastrar-->
