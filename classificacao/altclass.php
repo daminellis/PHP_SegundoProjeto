@@ -1,15 +1,15 @@
 <?php
-    $codigo= $_GET['codigo'];
+    $codigo             = $_GET['codigo'];
+    $nome             = $_GET['nome'];
 
     $conectar = mysql_connect('localhost','root','');
     $db       = mysql_select_db('livraria');
-    $sql      = "delete from classiicacao where codigo = '$codigo'";
-
+    $sql      = "update classificacao set nome = '$nome' where codigo = '$codigo'";
     $resultado = mysql_query($sql);
 ?>
 
 <script>
-	alert('Excluido com Sucesso!');
+	alert('Alterado com Sucesso!');
 	<?php
 		echo "location.href='cad_class.php'";
 	?>

@@ -6,7 +6,7 @@ $db       = mysql_select_db('livraria');
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html">
-    <title>Pesquisa Clasificações </title>
+    <title>Pesquisa Livros </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
@@ -27,6 +27,7 @@ $db       = mysql_select_db('livraria');
 
             document.getElementById('codigo').value = retorno[0];
             document.getElementById('nome').value = retorno[1];
+
         }
     </script>
     <!--Modal Cadastrar-->
@@ -37,7 +38,7 @@ $db       = mysql_select_db('livraria');
                     <h1>Adicionar um registro ...</h1>
                 </div>
                 <div class="modal-body">
-                    <form class="form-group well" action="addclass.php" method="GET">
+                    <form class="form-group well" action="addcateg.php" method="GET">
                         <input type="text" id="codigo" name="codigo" class="span3" value="" required placeholder="Codigo" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <input type="text" id="nome" name="nome" class="span3" value="" required placeholder="Nome" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-success btn-large" id="cadastrar" name="cadastrar" value="cadastrar" style="height: 35px">Cadastrar</button>
@@ -55,12 +56,12 @@ $db       = mysql_select_db('livraria');
     <div class="modal fade" id="myModalAlterar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
 
-            <div class="modal-content">
+            <div class="modal-content"> 
                 <div class="modal-header">
                     <h1>Alterar de Registro...</h1>
                 </div>
                 <div class="modal-body">
-                    <form class="form-group well" action="altclass.php" method="GET">
+                    <form class="form-group well" action="altcateg.php" method="GET">
                         Codigo<input id="codigo" type="text" name="codigo" value="" required>
                         Nome  <input id="nome" type="text" name="nome" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-success btn-large" name="alterar" id="alterar" value="alterar" style="height: 35px">Alterar</button>
@@ -82,7 +83,7 @@ $db       = mysql_select_db('livraria');
                     <h1>Excluir um Registro...</h1>
                 </div>
                 <div class="modal-body">
-                    <form class="form-group well" action="excuser.php" method="GET">
+                    <form class="form-group well" action="excateg.php" method="GET">
                         Codigo <input id="codigo" type="text" name="codigo" value="" required>
                         Nome   <input id="nome" type="text" name="nome" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-success btn-large" name="excluir" id="excluir" value="excluir" style="height: 35px">Excluir</button>
@@ -98,8 +99,8 @@ $db       = mysql_select_db('livraria');
     <div class="container">
         <div class="row">
 
-            <h2>Lista de Usuários: </h2><br>
-            <form action="cad_class.php" method="POST">
+            <h2>Lista de Categorias: </h2><br>
+            <form action="cad_categ.php" method="POST">
                 <input type="text" name="nome" id="nome" placeholder="Nome ..." class="span4" style="margin-bottom: -2px; height: 25px;">
                 <button type="submit" name="pesquisar" id="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
@@ -114,7 +115,7 @@ $db       = mysql_select_db('livraria');
                 <?php
                 if ((isset($_POST['pesquisar'])) or isset($_POST['gravar']))
                 {
-              	    $consulta = "select * from classificacao";
+              	    $consulta = "select * from categoria";
 
                    	if ($_POST['nome'] != '')
                    	{
@@ -133,7 +134,7 @@ $db       = mysql_select_db('livraria');
                         <td><?php echo $dados['nome']; ?></td>
                         <td>
 			        	<?php
-								echo "<a href='exclass.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' id='excluir' name='excluir'>Excluir</button></a>";
+								echo "<a href='excateg.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' id='excluir' name='excluir'>Excluir</button></a>";
 							?>
 
                             <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">

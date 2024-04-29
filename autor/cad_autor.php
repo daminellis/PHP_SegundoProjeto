@@ -162,7 +162,7 @@ $db       = mysql_select_db('livraria');
                         <td><?php echo $dados['nacionalidade']; ?></td>                        
                         <td>
 			        	<?php
-								echo "<a href='excuser.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' id='excluir' name='excluir'>Excluir</button></a>";
+								echo "<a href='excautor.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' id='excluir' name='excluir'>Excluir</button></a>";
 							?>
 
                             <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
