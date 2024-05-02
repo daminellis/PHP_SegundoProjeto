@@ -1,0 +1,82 @@
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu de Cadastros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('livraria.jpg'); 
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .menu {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: center;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+        }
+
+        .menu button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            border: none;
+            background: gray;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .menu button:hover {
+            color: #0056b3;
+        }
+        .voltar {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .voltar button {
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: gray;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .voltar button:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <h2><b>Menu de Cadastros:</b></h2>
+            <button onclick="window.location.href='usuario/cad_usuarios.php'">Cadastrar Usuários</button>
+            <button onclick="window.location.href='autor/cad_autor.php'">Cadastrar Autores</button>
+            <button onclick="window.location.href='classificacao/cad_class.php'">Cadastrar Classificação</button>
+            <button onclick="window.location.href='livro/cad_livro.php'">Cadastrar Livro</button>
+            <button onclick="window.location.href='categoria/cad_categ.php'">Cadastrar Categoria</button>
+        </div>
+        <div class="voltar">
+            <button onclick="window.location.href='menu.php'">Voltar ao menu</button>
+        </div>
+    </div>
+</body>
+</html>
