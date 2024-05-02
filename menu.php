@@ -13,7 +13,7 @@ $livros = mysqli_query($connect, $sql_livros);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="menu.css">
   <title>Document</title>
 </head>
 <body>
@@ -22,7 +22,7 @@ $livros = mysqli_query($connect, $sql_livros);
     <h2>BOOKLY</h2>
   </header>
   <div class="tipo-div">
-    <form class="tipo" action="home.php" method="post">
+    <form class="tipo" action="menu.php" method="post">
       <?php
         $query = mysqli_query($connect,'SELECT codigo, nome FROM categoria');
         while($categorias = mysqli_fetch_array($query)) { ?>
