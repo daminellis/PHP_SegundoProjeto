@@ -34,7 +34,7 @@ if (isset($_POST['conectar']))
 </head>
 <body>
     <div>
-        <button class="Voltar" onclick="window.location.href='home.php'">Voltar</button>
+        <button class="Voltar" onclick="window.location.href='menu.php'">Voltar</button>
         <div class="container">
             <form name='formulario' method='post' action='login.php'>
                 <h2>Login de Usuários</h2>
