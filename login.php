@@ -20,7 +20,7 @@ if (isset($_POST['conectar']))
     {
         session_start();
         $_SESSION['login'] = $login;
-        echo "<script>window.location.href = 'menu.html';</script>"; // Redirecionar após o login bem-sucedido
+        echo "<script>window.location.href = 'cadastrar.html';</script>"; // Redirecionar após o login bem-sucedido
     }
 }
 ?>
