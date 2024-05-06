@@ -144,9 +144,33 @@ $db       = mysql_select_db('livraria');
                     </tr>
                 <?php
                 }
-					mysql_close($conectar);
+                mysql_close($conectar);
+            }
+            else // Se nenhum nome foi pesquisado, exibe todos os usuários
+            {
+                $consulta = "SELECT * FROM categoria";
+                $resultado = mysql_query($consulta);
+                while ($dados = mysql_fetch_array($resultado))
+                {
+                    $strdados = $dados['codigo']."*".$dados['nome'];
+                    ?>
+                    <tr>
+                        <td><?php echo $dados['codigo']; ?></td>
+                        <td><?php echo $dados['nome']; ?></td>
+                        <td>
+                            <?php
+                            echo "<a href='excateg.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' id='excluir' name='excluir'>Excluir</button></a>";
+							?>
+                            <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                                <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
                 }
-                ?>
+                mysql_close($conectar);
+            }
+            ?>
             </table>
         </div>
     </div>

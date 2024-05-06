@@ -195,9 +195,41 @@ $db       = mysql_select_db('livraria');
                     </tr>
                 <?php
                 }
-					mysql_close($conectar);
+                mysql_close($conectar);
+            }
+            else // Se nenhum nome foi pesquisado, exibe todos os usuários
+            {
+                $consulta = "SELECT * FROM livro";
+                $resultado = mysql_query($consulta);
+                while ($dados = mysql_fetch_array($resultado))
+                {
+                    $strdados = $dados['codigo']."*".$dados['codcategoria']."*".$dados['codclassificacao']."*".$dados['ano']."*".$dados['edicao']."*".$dados['codautor']."*".$dados['editora']."*".$dados['paginas']."*".$dados['fotocapa']."*".$dados['valor'];
+				    ?>
+                    <tr>
+                        <td><?php echo $dados['codigo']; ?></td>
+                        <td><?php echo $dados['codcategoria']; ?></td>
+                        <td><?php echo $dados['codclassificacao']; ?></td>
+                        <td><?php echo $dados['ano']; ?></td>
+                        <td><?php echo $dados['edicao']; ?></td>
+                        <td><?php echo $dados['codautor']; ?></td>
+                        <td><?php echo $dados['editora']; ?></td>
+                        <td><?php echo $dados['paginas']; ?></td>
+                        <td><?php echo '<img src="fotos/'.$dados['fotocapa'].'" height="100" width="100" />'." "; ?></td>
+                        <td><?php echo $dados['valor']; ?></td>
+                        <td>
+                            <?php
+                            echo "<a href='exclivro.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' name='excluir'>Excluir</button></a>";
+							?>
+                            <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                                <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
                 }
-                ?>
+                mysql_close($conectar);
+            }
+            ?>
             </table>
         </div>
     </div>

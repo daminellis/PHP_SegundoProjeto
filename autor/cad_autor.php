@@ -172,9 +172,38 @@ $db       = mysql_select_db('livraria');
                     </tr>
                 <?php
                 }
-					mysql_close($conectar);
+                mysql_close($conectar);
+            }
+            else // Se nenhum nome foi pesquisado, exibe todos os usuários
+            {
+                $consulta = "SELECT * FROM autor";
+                $resultado = mysql_query($consulta);
+                while ($dados = mysql_fetch_array($resultado))
+                {
+                    $strdados = $dados['codigo']."*".$dados['nome']."*".$dados['endereco']."*".$dados['cidade']."*".$dados['estado']."*".$dados['pais']."*".$dados['nacionalidade'];
+				    ?>
+                    <tr>
+                        <td><?php echo $dados['codigo']; ?></td>
+                        <td><?php echo $dados['nome']; ?></td>
+                        <td><?php echo $dados['endereco']; ?></td>
+                        <td><?php echo $dados['cidade']; ?></td>
+                        <td><?php echo $dados['estado']; ?></td>
+                        <td><?php echo $dados['pais']; ?></td>
+                        <td><?php echo $dados['nacionalidade']; ?></td>                        
+                        <td>
+                            <?php
+                            echo "<a href='excautor.php?codigo=".$dados['codigo']."'><button class='btn btn-danger' type='button' id='excluir' name='excluir'>Excluir</button></a>";
+							?>
+                            <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                                <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
                 }
-                ?>
+                mysql_close($conectar);
+            }
+            ?>
             </table>
         </div>
     </div>
