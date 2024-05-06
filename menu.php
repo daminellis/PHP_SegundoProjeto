@@ -14,13 +14,13 @@ if (!$connect) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="menu.css">
-  <title>Document</title>
+  <title>Pagina Inicial</title>
 </head>
 <body>
 <header>
   <div class="logo-container">
     <i class="fa-solid fa-bookmark"></i>
-    <h2>BOOKLY</h2>
+    <h2>LIVROS.COM</h2>
   </div>
   <button onclick="window.location.href='login.php'" class="login-button">Login</button>
 </header>
