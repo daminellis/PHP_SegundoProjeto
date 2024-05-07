@@ -54,11 +54,11 @@ if (!$connect) {
     <label class="radio">Classificação:</label>
     <?php
       // Consulta para obter classificações do banco de dados
-      $query_classificacao = mysqli_query($connect, 'SELECT DISTINCT classificacao FROM classificacao');
+      $query_classificacao = mysqli_query($connect, 'SELECT codigo, nome FROM classificacao');
       while($classificacoes = mysqli_fetch_array($query_classificacao)) { ?>
         <label class="radio">
           <input type="radio" name="classificacao" value="<?php echo $classificacoes['classificacao']?>" />
-          <span><?php echo $classificacoes['classificacao'] ?></span>
+          <span><?php echo $classificacoes['nome'] ?></span>
         </label>
     <?php } ?>
     <label class="radio"><input type="radio" name="classificacao" value="null" checked><span>Todos</span></label>
