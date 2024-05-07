@@ -87,12 +87,10 @@ header {
 
 .container {
   background-color: white;
-  margin: 1rem;
-  margin-top: 1.75rem;
-  width: calc(100% - 240px);
-  float: right;
+  margin: 6rem 0; /* Ajuste a margem superior e inferior para 1rem e remova a margem lateral */
+  width: 100%; /* Altere a largura para 100% */
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1rem 0; /* Remova o padding lateral e mantenha apenas o padding superior e inferior */
 }
 
 .livro {

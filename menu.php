@@ -27,16 +27,43 @@ if (!$connect) {
 
 <div class="tipo-div">
   <form class="tipo" action="menu.php" method="post">
+    <label class="radio">Categoria:</label>
     <?php
-      // Alterado de mysql_query para mysqli_query e corrigido o nome da variável de conexão
-      $query = mysqli_query($connect, 'SELECT codigo, nome FROM categoria');
-      while($categorias = mysqli_fetch_array($query)) { ?>
-      <label class="radio">
-        <input type="radio" name="tipo" value="<?php echo $categorias['codigo']?>" />
-        <span><?php echo $categorias['nome'] ?></span>
-      </label>
-      <?php } ?>
-      <label class="radio"><input type="radio" name="tipo" value="null" checked><span>Todos</span></label>
+      // Consulta para obter categorias do banco de dados
+      $query_categoria = mysqli_query($connect, 'SELECT codigo, nome FROM categoria');
+      while($categorias = mysqli_fetch_array($query_categoria)) { ?>
+        <label class="radio">
+          <input type="radio" name="tipo" value="<?php echo $categorias['codigo']?>" />
+          <span><?php echo $categorias['nome'] ?></span>
+        </label>
+    <?php } ?>
+    <label class="radio"><input type="radio" name="tipo" value="null" checked><span>Todos</span></label>
+
+    <label class="radio">Autor:</label>
+    <?php
+      // Consulta para obter autores do banco de dados
+      $query_autor = mysqli_query($connect, 'SELECT codigo, nome FROM autor');
+      while($autores = mysqli_fetch_array($query_autor)) { ?>
+        <label class="radio">
+          <input type="radio" name="autor" value="<?php echo $autores['codigo']?>" />
+          <span><?php echo $autores['nome'] ?></span>
+        </label>
+    <?php } ?>
+    <label class="radio"><input type="radio" name="autor" value="null" checked><span>Todos</span></label>
+
+    <label class="radio">Classificação:</label>
+    <?php
+      // Consulta para obter classificações do banco de dados
+      $query_classificacao = mysqli_query($connect, 'SELECT DISTINCT classificacao FROM classificacao');
+      while($classificacoes = mysqli_fetch_array($query_classificacao)) { ?>
+        <label class="radio">
+          <input type="radio" name="classificacao" value="<?php echo $classificacoes['classificacao']?>" />
+          <span><?php echo $classificacoes['classificacao'] ?></span>
+        </label>
+    <?php } ?>
+    <label class="radio"><input type="radio" name="classificacao" value="null" checked><span>Todos</span></label>
+
+    <input type="submit" value="Pesquisar">
   </form>
 </div>
 
