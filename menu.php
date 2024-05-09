@@ -33,11 +33,11 @@ if (!$connect) {
       $query_categoria = mysqli_query($connect, 'SELECT codigo, nome FROM categoria');
       while($categorias = mysqli_fetch_array($query_categoria)) { ?>
         <label class="radio">
-          <input type="radio" name="tipo" value="<?php echo $categorias['codigo']?>" />
+          <input type="radio" name="categoria" value="<?php echo $categorias['codigo']?>" />
           <span><?php echo $categorias['nome'] ?></span>
         </label>
     <?php } ?>
-    <label class="radio"><input type="radio" name="tipo" value="null" checked><span>Todos</span></label>
+    <label class="radio"><input type="radio" name="categoria" value="null" checked><span>Todos</span></label>
 
     <label class="radio">Autor:</label>
     <?php
@@ -57,13 +57,13 @@ if (!$connect) {
       $query_classificacao = mysqli_query($connect, 'SELECT codigo, nome FROM classificacao');
       while($classificacoes = mysqli_fetch_array($query_classificacao)) { ?>
         <label class="radio">
-          <input type="radio" name="classificacao" value="<?php echo $classificacoes['classificacao']?>" />
+          <input type="radio" name="classificacao" value="<?php echo $classificacoes['codigo']?>" />
           <span><?php echo $classificacoes['nome'] ?></span>
         </label>
     <?php } ?>
     <label class="radio"><input type="radio" name="classificacao" value="null" checked><span>Todos</span></label>
-
-    <input type="submit" value="Pesquisar">
+    
+    <input type="submit" value="Pesquisar" class="pesquisar">
   </form>
 </div>
 
@@ -73,33 +73,52 @@ if (!$connect) {
   <div class="livros">
     <div class="livros1">
       <?php 
-        $livros_query = "SELECT livro.*, autor.nome as autor_nome FROM livro INNER JOIN autor ON livro.codautor = autor.codigo";
-        
-        // Verificar se um autor foi selecionado
-        if(isset($_POST['autor']) && $_POST['autor'] != 'null') {
-          $autor_id = $_POST['autor'];
-          $livros_query .= " WHERE livro.codautor = $autor_id";
+          // Definir a consulta SQL
+          $livros_query = "SELECT livro.*, autor.nome as autor_nome FROM livro INNER JOIN autor ON livro.codautor = autor.codigo";
+
+          // Verificar se uma categoria foi selecionada
+          if(isset($_POST['categoria']) && $_POST['categoria'] != 'null') {
+            $categoria_id = $_POST['categoria'];
+            $livros_query .= " WHERE livro.codcategoria = $categoria_id";
+          }
+          
+          // Verificar se um autor foi selecionado
+          if(isset($_POST['autor']) && $_POST['autor'] != 'null') {
+            $autor_id = $_POST['autor'];
+            // Se já houver uma condição WHERE, adicione a cláusula AND
+            $livros_query .= isset($categoria_id) ? " AND livro.codautor = $autor_id" : " WHERE livro.codautor = $autor_id";
+          }
+          
+          // Verificar se uma classificação foi selecionada
+          if(isset($_POST['classificacao']) && $_POST['classificacao'] != 'null') {
+            $classificacao_id = $_POST['classificacao'];
+            // Se já houver uma condição WHERE, adicione a cláusula AND
+            $livros_query .= isset($categoria_id) || isset($autor_id) ? " AND livro.codclassificacao = $classificacao_id" : " WHERE livro.codclassificacao = $classificacao_id";
+          }
+          
+          // Ordenar por título
+          $livros_query .= " ORDER BY livro.titulo ASC";
+          
+          // Executar a consulta SQL
+          $livros_result = mysqli_query($connect, $livros_query);
+          
+          if(mysqli_num_rows($livros_result) > 0) {
+            while($resultado = mysqli_fetch_array($livros_result)) {
+              $caminho_foto = 'livro/fotos/' . $resultado["fotocapa"];
+              echo '<div class="livro-container">
+                    <div class="livro">
+                      <img src="'.$caminho_foto.'" width="100" height="130" />
+                      <h4>'.$resultado["titulo"].'</h4>
+                      <p>Autor: '.$resultado["autor_nome"].'</p>
+                      <p>Preço: R$ '.$resultado["valor"].'</p>
+                      <a href="comprar.php?codigo='.$resultado["codigo"].'">COMPRAR</a>
+                    </div>
+                  </div>';
+            }
+        } else {
+            echo '<p>Nenhum livro encontrado.</p>';
         }
-        
-        // Ordenar por título
-        $livros_query .= " ORDER BY livro.titulo ASC";
-        
-        // Alterado de mysql_query para mysqli_query e corrigido o nome da variável de conexão
-        $livros_result = mysqli_query($connect, $livros_query);
-        
-        while($resultado = mysqli_fetch_array($livros_result)) {
-          $caminho_foto = 'livro/fotos/' . $resultado["fotocapa"];
-          echo '<div class="livro-container">
-                <div class="livro">
-                  <img src="'.$caminho_foto.'" width="100" height="130" />
-                  <h4>'.$resultado["titulo"].'</h4>
-                  <p>Autor: '.$resultado["autor_nome"].'</p>
-                  <p>Preço: R$ '.$resultado["valor"].'</p>
-                  <a href="comprar.php?codigo='.$resultado["codigo"].'">COMPRAR</a>
-                </div>
-              </div>';
-        }
-      ?>
+      ?>  
     </div>
     </div>
   </div>
