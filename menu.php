@@ -14,7 +14,7 @@ if (!$connect) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="menu.css">
-  <title>Pagina Inicial</title>
+  <title>Página Inicial</title>
 </head>
 <body>
 <header>
@@ -22,7 +22,10 @@ if (!$connect) {
     <i class="fa-solid fa-bookmark"></i>
     <h2>LIVROS.COM</h2>
   </div>
-  <button onclick="window.location.href='login.php'" class="login-button">Login</button>
+  <div class="buttons-container">
+    <button onclick="window.location.href='carrinho.php'" class="carrinho-button">Carrinho</button>
+    <button onclick="window.location.href='login.php'" class="login-button">Login</button>
+  </div>
 </header>
 
 <div class="tipo-div">
@@ -120,8 +123,8 @@ if (!$connect) {
         }
       ?>  
     </div>
-    </div>
   </div>
+</div>
 </div>
 </body>
 </html>
